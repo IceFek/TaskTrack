@@ -32,7 +32,8 @@ public class RegularUser extends User {
         userOption = br.readLine();
         switch(userOption){
             case "1":
-                System.out.println(userOption);
+                Todo todo = RestClientHanlder.get(Integer.parseInt(userOption)).get();
+               todo.show();
                 break;
             case "2":
                 System.out.println(userOption + "sdsd");
