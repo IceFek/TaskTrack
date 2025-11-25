@@ -7,8 +7,8 @@ import com.icefek.models.entity.User;
 import com.icefek.models.notentity.Status;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
        RegularUser user = new RegularUser("Bohdan");
-       user.menuHanlde();
+       user.openUserMenu();
     }
 }

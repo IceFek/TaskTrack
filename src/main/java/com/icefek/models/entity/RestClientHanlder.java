@@ -1,11 +1,11 @@
 package com.icefek.models.entity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.icefek.models.notentity.ElementIsntExistException;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,22 +14,8 @@ public abstract class RestClientHanlder {
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    protected static Optional<Todo> get(int id){
-        Todo todo;
-        try {
-            Optional<List<Todo>> op = getTodo();
-            List<Todo> arrayList = op.get();
-            todo = arrayList.get(id);
 
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return Optional.of(todo);
-    }
-
-
-    private static Optional<List<Todo>> getTodo() throws IOException, InterruptedException {
+    protected static Optional<List<Todo>> getRequest() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(Base_URL))
                 .GET()
