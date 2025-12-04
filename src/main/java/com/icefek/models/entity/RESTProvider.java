@@ -8,23 +8,19 @@ import java.util.Optional;
 
 public abstract class RESTProvider {
 
-
-    protected static Todo get(int id){
+    protected static Todo get(int id) throws ElementIsntExistException{
         Todo todo;
+        List<Todo> arrayList = null;
         Optional<List<Todo>> op;
         try {
             op = RestClientHanlder.getRequest();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        List<Todo> arrayList;
-        if (op.isPresent()) {
-            arrayList = op.get();
-        }
-        else {
+            if (op.isPresent()) {
+                arrayList = op.get();
+            }
+            todo = arrayList.get(id);
+        } catch (IOException | InterruptedException | IndexOutOfBoundsException e) {
             throw new ElementIsntExistException("Such element is not exist");
         }
-        todo = arrayList.get(id);
         return todo;
     }
 

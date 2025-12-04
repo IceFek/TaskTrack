@@ -3,14 +3,11 @@ package com.icefek.models.entity;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public abstract class UserMenu extends Menu {
+public class UserMenu extends Menu {
 
-   public static String showGeneralMenu(BufferedReader br){
-        System.out.printf("\n%s\n",BORDER);
-        System.out.print("=Welcome to the Regular User menu=");
-        System.out.printf("\n%s",BORDER);
-        System.out.print("\n=1.Get to do by id               =\n=2.Create to do                  =\n=3.Close menu                    =\n");
-        System.out.printf("%s\n",BORDER);
+   public String showGeneralMenu(BufferedReader br){
+        String[] options = {"Get to do by id","Create to do","Close menu"};
+        showParagraph("Regular user menu",options);
         String answer = "";
         try{
            answer = br.readLine();
@@ -20,10 +17,8 @@ public abstract class UserMenu extends Menu {
         }
         return answer;
    }
-   public static String getToDoMenu(BufferedReader br){
-       System.out.printf("\n%s\n",BORDER);
-       System.out.print("=   Write id here   =");
-       System.out.printf("\n%s",BORDER);
+   public String getToDoMenu(BufferedReader br){
+       showParagraph("Write todo's id",null);
        String answer = "";
        try{
            answer = br.readLine();
@@ -33,4 +28,17 @@ public abstract class UserMenu extends Menu {
        }
        return answer;
    }
+
+    public String createToDoMenu(BufferedReader br){
+        String[] options = {"Set id","Create to do","Close menu"};
+        showParagraph("Create todo",options);
+        String answer = "";
+        try{
+            answer = br.readLine();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return answer;
+    }
 }
