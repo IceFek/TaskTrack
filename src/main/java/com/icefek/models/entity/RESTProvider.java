@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class RESTProvider {
-
+    protected static boolean post(Todo todo){
+        return RestClientHanlder.postRequest(todo);
+    }
     protected static Todo get(int id) throws ElementIsntExistException{
         Todo todo;
         List<Todo> arrayList = null;
@@ -22,6 +24,14 @@ public abstract class RESTProvider {
             throw new ElementIsntExistException("Such element is not exist");
         }
         return todo;
+    }
+    protected static boolean delete(String id){
+        if(RestClientHanlder.deleteRequest(id)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }
