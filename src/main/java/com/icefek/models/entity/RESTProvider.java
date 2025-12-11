@@ -21,6 +21,7 @@ public abstract class RESTProvider {
             }
             todo = arrayList.get(id);
         } catch (IOException | InterruptedException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
             throw new ElementIsntExistException("Such element is not exist");
         }
         return todo;
@@ -32,6 +33,10 @@ public abstract class RESTProvider {
         else{
             return false;
         }
+    }
+
+    protected static boolean update(Todo todo){
+        return RestClientHanlder.putRequest(todo);
     }
 
 }

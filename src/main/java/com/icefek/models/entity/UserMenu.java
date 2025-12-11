@@ -11,7 +11,7 @@ public class UserMenu extends Menu {
        switch(menuType) {
            // MAIN BLOCK
            case USER_MAIN :{
-               String[] options = {"Get to do by id","Create to do","Delete todo","Close menu"};;
+               String[] options = {"Get to do by id","Create to do","Delete todo","Update todo","Close menu"};;
                showParagraph("Regular user menu",options);
                break;
                }
